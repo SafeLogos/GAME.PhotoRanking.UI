@@ -3,13 +3,13 @@
 
         <div class="group-card d-flex col-2 mx-3 mb-3" *ngFor="let group of photoGroups" [ngStyle]="{'background-color': group.color}">
             <div class="header w-100 d-flex justify-content-end pt-2">
-                <button type="button" class="btn-close" aria-label="Close" (click)="test()"></button>
+                <button type="button" class="btn-close" aria-label="Close" (click)="deleteGroup(group)"></button>
             </div>
             <div class="content flex-grow-1 d-flex align-items-center justify-content-center">
                 {{group.title}}
             </div>
         </div>
-        <div class="group-card-add col-2 mx-3 mb-3" (click)="add()">
+        <div class="group-card-add col-2 mx-3 mb-3" (click)="open(content)">
             <span>
                 <i class="fa fa-plus"></i>
             </span>
@@ -19,17 +19,16 @@
         </div>
     </div>
 
-    <button (click)="open(content)">asd</button>
-
     <ng-template #content let-modal>
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+            <h4 class="modal-title" id="modal-basic-title">Новая группа</h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
-            
+            <span>Название</span>
+            <input type="text" class="form-control" [(ngModel)]="newGroup.title">
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Save</button>
+            <button type="button" class="btn btn-outline-secondary" (click)="add(modal)">Создать</button>
         </div>
     </ng-template>

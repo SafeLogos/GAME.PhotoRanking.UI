@@ -1,0 +1,22 @@
+.toster-container{
+    position: fixed;
+    right: 0;
+    padding: 20px;
+
+    .toster-card{
+        margin-bottom: 10px;
+        width: 320px;
+        min-height: 100px;
+        border-radius: 15px;
+        color: white;
+        z-index: 2;
+
+        &-error{
+            background-color: #ff0040;
+        }
+
+        &-success{
+            background-color: #2ca037;
+        }
+    }
+}

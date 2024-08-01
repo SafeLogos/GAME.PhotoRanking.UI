@@ -8,6 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { TosterComponent } from './components/toster/toster.component';
 import { BubblesComponent } from './components/bubbles/bubbles.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { PhotoGroupDetailsComponent } from './components/photo-group-details/photo-group-details.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +19,18 @@ import { BubblesComponent } from './components/bubbles/bubbles.component';
     HomeComponent,
     NavigationComponent,
     TosterComponent,
-    BubblesComponent
+    BubblesComponent,
+    ReversePipe,
+    PhotoGroupDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    FormsModule,
+    NgbModule,
   ],
   providers: [
+    provideHttpClient(withInterceptorsFromDi())
     //provideClientHydration()
   ],
   bootstrap: [AppComponent]

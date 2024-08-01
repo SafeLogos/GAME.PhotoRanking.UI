@@ -1,1 +1,15 @@
-<p>toster works!</p>
+
+<div class="toster-container">
+    <div class="d-flex flex-column float-end">
+
+        <div class="toster-card d-flex align-items-center justify-content-center"
+        [class.toster-card-error]="msg.type == 'error'" 
+        [class.toster-card-success]="msg.type == 'success'" 
+        [ngStyle]="{'opacity': msg.opacity}"
+         *ngFor="let msg of reversedMessages">
+            <div class="content w-100 h-100 text-center">
+                {{msg.text}}
+            </div>
+        </div>
+    </div>
+</div>
