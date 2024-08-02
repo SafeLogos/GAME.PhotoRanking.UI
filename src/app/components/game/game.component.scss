@@ -1,0 +1,27 @@
+.left-and-right{
+    .img-card{
+        width: 400px;
+        height: 600px;
+        border: 2px solid rgb(224, 213, 14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+
+        img{
+            width: 100%;
+        }
+    }
+
+    $border-radius: 20px;
+    .left-card{
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+        border-right: 0;
+    }
+
+    .right-card{
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+    }
+}

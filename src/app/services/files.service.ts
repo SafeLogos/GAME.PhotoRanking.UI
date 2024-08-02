@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class FilesService {
 
-  url = environment.apiUrl + "photo-groups"
+  url = environment.apiUrl + "files"
   constructor(private http: HttpClient) { }
 
   public base64(id: string){

@@ -1,0 +1,57 @@
+    <div class="row justify-content-start">
+        <div class="photo-container col-3 mb-2" *ngFor="let photo of group?.photos; let i = index">
+            <div class="header w-100 d-flex justify-content-end">
+                <button type="button" class="btn-close" aria-label="Close" (click)="delete(photo)"></button>
+                </div>
+            <div class="photo-content">
+                <img [src]="images[i]" alt="">
+            </div>
+            <div class="photo-title">{{photo.title}}</div>
+
+        </div>
+
+        <div class="col-3 mb-3">
+
+            <div class="card-add" (click)="open(content)">
+                <span>
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span>
+                    Добавить фото
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center" *ngIf="group && group.photos.length > 1">
+        <button class="btn btn-outline-success play-button d-flex justify-content-center align-items-center" (click)="startGame()">
+            <span class="w-100">Играть</span>
+
+                <div class="spinner-border text-danger" role="status" [class.d-none]="!gameStarted">
+                    <span class="sr-only">Loading...</span>
+                </div>
+        </button>
+    </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Новое фото</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="title" class="form-label">Название</label>
+            <input type="text" id="title" class="form-control" [(ngModel)]="newPhoto.title">
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Изображение</label>
+            <input class="form-control" type="file" accept=".png, .jpg" id="formFile" #image (change)="loadFile($event)">
+        </div>
+        <div class="mb-3 d-flex justify-content-center" *ngIf="newPhotoBase64">
+            <img [src]="newPhotoBase64" alt="img" style="max-width: 300px;">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="add(modal)">Создать</button>
+    </div>
+</ng-template>

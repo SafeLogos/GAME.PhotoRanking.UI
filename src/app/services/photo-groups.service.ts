@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { PhotoGroupModel } from '../models/photo-group-model';
 import { ApiResponse } from '../models/api-response';
+import { PhotoModel } from '../models/photo-model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,18 @@ export class PhotoGroupsService {
 
   public delete(id: string){
     return this.http.delete<ApiResponse<boolean>>(this.url + "/" + id)
+  }
+
+  public addPhoto(title: string, groupId: string, file: File){
+    let form = new FormData();
+    form.append('data', JSON.stringify({title, groupId}))
+    form.append('file', file);
+
+    console.log(file)
+    return this.http.post<ApiResponse<PhotoModel>>(this.url + '/add-photo', form)
+  }
+
+  public deletePhoto(groupId: string, photoId: string){
+    return this.http.delete<ApiResponse<boolean>>(this.url + "/delete-photo/" + groupId + "/" + photoId)
   }
 }

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { PhotoGroupDetailsComponent } from './components/photo-group-details/photo-group-details.component';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PhotoGroupDetailsComponent } from './components/photo-group-details/pho
     TosterComponent,
     BubblesComponent,
     ReversePipe,
-    PhotoGroupDetailsComponent
+    PhotoGroupDetailsComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

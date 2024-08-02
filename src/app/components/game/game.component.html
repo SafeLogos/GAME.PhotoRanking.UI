@@ -1,0 +1,12 @@
+<div class="game-container" *ngIf="fullyLoaded">
+    <div class="cards">
+        <div class="left-and-right d-flex align-items-center justify-content-center">
+            <div class="img-card left-card">
+                <img [src]="leftPhoto?.base64" alt="">
+            </div>
+            <div class="img-card right-card">
+                <img [src]="rightPhoto?.base64" alt="">
+            </div>
+        </div>
+    </div>
+</div>

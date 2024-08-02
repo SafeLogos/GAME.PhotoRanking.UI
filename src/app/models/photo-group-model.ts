@@ -1,7 +1,7 @@
 import { PhotoModel } from "./photo-model";
 
 export interface PhotoGroupModel {
-    id: string | null;
+    id: string;
     title: string;
     color: string;
 

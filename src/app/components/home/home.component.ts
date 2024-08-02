@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   private modalService = inject(NgbModal);
   private openedModal: NgbModalRef|undefined;
 	
-  constructor(private photoGroupsService: PhotoGroupsService, private rs: RequestsService){}
+  constructor(private photoGroupsService: PhotoGroupsService, private rs: RequestsService, private toster: TosterService){}
 
   ngOnInit(): void {
     this.rs.handle(this.photoGroupsService.getAll(), data => this.photoGroups = data.data)
@@ -40,6 +40,11 @@ export class HomeComponent implements OnInit {
   photoGroups: PhotoGroupModel[] = []
 
   add(content: TemplateRef<any>){
+    if(!this.newGroup.title){
+      this.toster.error('Не заполнено название')
+      return
+    }
+
     this.openedModal?.close();
 
     this.rs.handle(this.photoGroupsService.add(this.newGroup), (data) => { 
@@ -61,7 +66,7 @@ export class HomeComponent implements OnInit {
 
   getNewGroup(): PhotoGroupModel{
     return {
-      id: null,
+      id: "",
       title: "",
       color: this.randomColor(),
       photos: []
