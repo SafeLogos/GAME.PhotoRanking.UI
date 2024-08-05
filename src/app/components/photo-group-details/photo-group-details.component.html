@@ -45,7 +45,7 @@
         </div>
         <div class="mb-3">
             <label for="formFile" class="form-label">Изображение</label>
-            <input class="form-control" type="file" accept=".png, .jpg" id="formFile" #image (change)="loadFile($event)">
+            <input class="form-control" type="file" accept=".png, .jpg, .webp" id="formFile" #image (change)="loadFile($event)">
         </div>
         <div class="mb-3 d-flex justify-content-center" *ngIf="newPhotoBase64">
             <img [src]="newPhotoBase64" alt="img" style="max-width: 300px;">

@@ -20,8 +20,8 @@ export class RankingGamesService {
     return this.http.post<ApiResponse<string>>(this.url + "/start-game/" + groupId, null)
   }
 
-  public selectPhoto(photoId: string){
-    return this.http.post<ApiResponse<RankingGameModel>>(this.url + "/select-photo/" + photoId, null)
+  public selectPhoto(gameId: string, photoId: string){
+    return this.http.post<ApiResponse<RankingGameModel>>(`${this.url}/select-photo/${gameId}/${photoId}`, null)
   }
 
   

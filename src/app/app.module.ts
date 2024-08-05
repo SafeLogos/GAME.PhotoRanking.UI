@@ -9,10 +9,11 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { TosterComponent } from './components/toster/toster.component';
 import { BubblesComponent } from './components/bubbles/bubbles.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { PhotoGroupDetailsComponent } from './components/photo-group-details/photo-group-details.component';
 import { GameComponent } from './components/game/game.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { GameComponent } from './components/game/game.component';
     HomeComponent,
     NavigationComponent,
     TosterComponent,
-    BubblesComponent,
+    BubblesComponent, 
     ReversePipe,
     PhotoGroupDetailsComponent,
     GameComponent
@@ -32,6 +33,7 @@ import { GameComponent } from './components/game/game.component';
     NgbModule,
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     provideHttpClient(withInterceptorsFromDi())
     //provideClientHydration()
   ],

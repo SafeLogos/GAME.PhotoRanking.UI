@@ -4,4 +4,5 @@ export interface RankingResult {
     challengerA: PhotoModel;
     challengerB: PhotoModel;
     winner: PhotoModel | null;
+    roundNumber: number;
 }

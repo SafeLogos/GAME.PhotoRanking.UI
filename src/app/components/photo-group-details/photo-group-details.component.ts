@@ -107,6 +107,10 @@ export class PhotoGroupDetailsComponent implements OnInit {
       return;
 
     this.newPhotoFile = file;
+    if(!this.newPhoto.title){
+      let fileName = file.name;
+      this.newPhoto.title = fileName.substring(0, fileName.lastIndexOf('.'))
+    }
 
     const reader = new FileReader();
     reader.readAsDataURL(file);

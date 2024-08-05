@@ -92,11 +92,13 @@
         border-radius: 10px;
         color: white;
         width: 70%;
+        max-height: 58px;
+        overflow: hidden;
         text-align: center;
         margin: auto;
         transition: .2s;
 
-        transform: translateY(-60px);
+        transform: translateY(-65px);
     }
 }
 

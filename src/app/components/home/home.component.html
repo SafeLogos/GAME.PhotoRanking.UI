@@ -2,12 +2,13 @@
     <div class="row justify-content-center">
 
         <div class="group-card d-flex col-2 mx-3 mb-3" 
-        [routerLink]="['/group', group.id]"
         *ngFor="let group of photoGroups" [ngStyle]="{'background-color': group.color}">
             <div class="header w-100 d-flex justify-content-end pt-2">
                 <button type="button" class="btn-close" aria-label="Close" (click)="deleteGroup(group)"></button>
             </div>
-            <div class="content flex-grow-1 d-flex align-items-center justify-content-center">
+            <div class="content flex-grow-1 d-flex align-items-center justify-content-center"
+            [routerLink]="['/group', group.id]"
+            >
                 {{group.title}}
             </div>
         </div>

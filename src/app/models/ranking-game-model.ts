@@ -8,4 +8,5 @@ export interface RankingGameModel {
     group: PhotoGroupModel;
     layers: RankingLayerModel[]
     winner: PhotoModel | null;
+    roundsCount: number;
 }

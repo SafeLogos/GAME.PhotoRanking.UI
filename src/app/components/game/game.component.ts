@@ -7,6 +7,7 @@ import { RankingGameModel } from '../../models/ranking-game-model';
 import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from '../../services/requests.service';
 import { PhotoModel } from '../../models/photo-model';
+import { RankingResult } from '../../models/ranking-result';
 
 @Component({
   selector: 'app-game',
@@ -29,8 +30,10 @@ export class GameComponent implements OnInit{
   photos: { photoId: string, base64: string }[] = [];
   fullyLoaded: boolean = false;
 
+  currentResult: RankingResult | undefined;
   leftPhoto: { photo: PhotoModel, base64: string } | undefined;
   rightPhoto: { photo: PhotoModel, base64: string } | undefined;
+  winner: { photo: PhotoModel, base64: string } | undefined;
 
 
   ngOnInit(): void {
@@ -48,7 +51,6 @@ export class GameComponent implements OnInit{
       this.rs.handle(this.filesService.base64(photo.imageId), data => {
         count++;
         this.photos[index] =  { photoId: photo.id, base64: "data:image/png;base64, " + data.data};
-        count++;
         if(count == this.photos.length){
           this.fullyLoaded = true;
           this.setPhotos();
@@ -58,12 +60,23 @@ export class GameComponent implements OnInit{
   }
 
   setPhotos(){
-    if(this.game!.winner)
+    if(this.game!.winner){
+      this.winner = { photo: this.game!.winner, base64: this.photos.filter(p => p.photoId == this.game!.winner?.id)[0].base64 }
       return;
+    }
 
     let layer = this.game!.layers.slice().reverse()[0];
     let res = layer.results.filter(r => !r.winner)[0]
+    this.currentResult = res;
     this.leftPhoto = { photo: res.challengerA, base64: this.photos.filter(p => p.photoId == res.challengerA.id)[0].base64 }
     this.rightPhoto = { photo: res.challengerB, base64: this.photos.filter(p => p.photoId == res.challengerB.id)[0].base64 }
+
+  }
+
+  selectPhoto(photo: PhotoModel){
+    this.rs.handle(this.rankingGamesService.selectPhoto(this.game!.id, photo.id), data => {
+      this.game = data.data;
+      this.setPhotos();
+    })
   }
 }

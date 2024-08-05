@@ -1,11 +1,38 @@
 <div class="game-container" *ngIf="fullyLoaded">
-    <div class="cards">
-        <div class="left-and-right d-flex align-items-center justify-content-center">
-            <div class="img-card left-card">
-                <img [src]="leftPhoto?.base64" alt="">
+    <div *ngIf="!winner">
+        <div class="mb-4 mx-auto text-center">
+            <span class="mb-0 black-text" style="font-size: 20px;">Раунд {{currentResult!.roundNumber}}/{{game!.roundsCount}}</span>
+        </div>
+        <div class="cards d-flex align-items-center justify-content-center">
+            <div class="img-card left-card" (click)="selectPhoto(leftPhoto!.photo)">
+                <div class="card-container">
+                    <img [src]="leftPhoto?.base64" alt="">
+                </div>
+                    <div class="title">
+                        <p>{{leftPhoto?.photo?.title}}</p>
+                    </div>
             </div>
-            <div class="img-card right-card">
-                <img [src]="rightPhoto?.base64" alt="">
+            <div class="img-card right-card" (click)="selectPhoto(rightPhoto!.photo)">
+                <div class="card-container">
+                    <img [src]="rightPhoto?.base64" alt="">
+                </div>
+                <div class="title">
+                    <p>{{rightPhoto?.photo?.title}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="win-container" *ngIf="winner">
+        <div class="cards d-flex align-items-center justify-content-center flex-column">
+            <h3 class="mb-3">Победитель</h3>
+            <div class="img-card winner-card" >
+                <div class="card-container">
+                    <img [src]="winner.base64" alt="">
+                </div>
+                    <div class="title">
+                        <p>{{winner.photo.title}}</p>
+                    </div>
             </div>
         </div>
     </div>
